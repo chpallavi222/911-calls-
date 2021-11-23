@@ -1,16 +1,7 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
 
 
-# for mathematical operations
 import numpy as np 
-
-# for dataframe operations
 import pandas as pd 
-
-# for data visualizations
 import matplotlib.pyplot as plt
 import seaborn as sns
 
@@ -24,7 +15,7 @@ from ipywidgets import interact
 from ipywidgets import interact_manual
 
 
-# In[2]:
+
 
 
 # lets import the data
@@ -50,9 +41,6 @@ print("Size of data", data.shape)
 print(data.columns)
 
 
-# In[3]:
-
-
 # missing data 
 
 # lets import warnings module
@@ -72,14 +60,9 @@ missing_data = pd.concat([total, percent], axis=1, keys=['Total', 'Percent %'])
 missing_data
 
 
-# In[4]:
-
-
 # lets check the values in the Remarks column
 data['Remarks'].value_counts()
 
-
-# In[5]:
 
 
 # lets remove Remarks column, as it contains a lot of nans, and high cardinal column
@@ -88,9 +71,6 @@ data = data.drop(['Remarks'], axis = 1)
 
 # lets check the column names after removing the Remarks Column, as it having 
 data.columns
-
-
-# In[6]:
 
 
 # lets convert the amount column into numerical, so that we can analyze the values inside it
@@ -115,8 +95,6 @@ plt.title('Distribution of Amount', fontsize = 15)
 plt.show()
 
 
-# In[7]:
-
 
 data['Date'][data['Date']=='12/05.2015'] = '12/05/2015'
 data['Date'][data['Date']=='13/04.2015'] = '13/04/2015'
@@ -128,8 +106,6 @@ data['Date'][data['Date']=='\\\\xc2\\\\xa010/7/2015'] = '10/07/2015'
 
 
 # ### How Does the Funding Ecosystem changes with respect to Time?
-
-# In[8]:
 
 
 # some of the date formats are written wrongly so we have to clean them thoroughly so that we can analyze these values
@@ -155,15 +131,9 @@ plt.show()
 
 # #### What is the General Amount that Startups get in India?
 
-# In[9]:
-
 
 # lets check the Maximum funding of a startup
 print("Maximum funding to a Startups is : ", data["AmountInUSD"].dropna().sort_values().max())
-
-
-# In[10]:
-
 
 def check(x = 500000000): # 50 crore funding of startups
     return data[data['AmountInUSD'] > x][['StartupName',
@@ -173,48 +143,30 @@ def check(x = 500000000): # 50 crore funding of startups
 check()
 
 
-# In[11]:
 
 
 # lets check out different ventures of Paytm
 data[data.StartupName == 'Paytm'][['StartupName','InvestmentType']]
 
 
-# In[12]:
-
-
 # lets check out different ventures of Flipkart
 data[data.StartupName == 'Flipkart'][['StartupName','InvestmentType']]
 
-
-# In[13]:
 
 
 # lets check the minimum funding in a startup
 print("Minimum funding to a Startups is : ", data["AmountInUSD"].dropna().sort_values().min())
 
 
-# In[14]:
-
-
 # lets check the startups with least funding
 data[['AmountInUSD','StartupName']].sort_values(by = 'AmountInUSD', ascending = True).head(5)
-
-
-# In[15]:
 
 
 data[data['AmountInUSD'] == -999.0].shape
 
 
-# In[16]:
-
-
 # Average Funding
 print("On Average indian startups got funding of : ", data["AmountInUSD"].dropna().sort_values().mean())
-
-
-# In[17]:
 
 
 # lets check the no. of funding each startsup got
@@ -235,8 +187,6 @@ plt.show()
 
 # #### Which Kind of Industries are more preferred for Startups?
 
-# In[18]:
-
 
 # lets analyze the Industry of the Startups
 
@@ -256,8 +206,6 @@ plt.title("Industry vertical of startups with number of funding", fontsize=16)
 plt.show()
 
 
-# In[19]:
-
 
 # lets analyze the sub vertical industries
 
@@ -274,8 +222,6 @@ plt.show()
 
 
 # #### Does Location also play a role, In determining the Growth of a Startup?
-
-# In[20]:
 
 
 # analyzing the effect of Cities on a Startup
@@ -297,7 +243,6 @@ plt.show()
 
 # #### Who plays the main role in Indian Startups Ecosystem?
 
-# In[21]:
 
 
 from wordcloud import WordCloud
@@ -309,9 +254,6 @@ plt.imshow(wordcloud)
 plt.title("Wordcloud for Investor Names", fontsize=35)
 plt.axis("off")
 plt.show()
-
-
-# In[22]:
 
 
 # lets analyze the investors on startups
@@ -342,7 +284,6 @@ plt.show()
 
 # #### What are the different Types of Funding for Startups?
 
-# In[23]:
 
 
 # lets analyze the investment
